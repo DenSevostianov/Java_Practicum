@@ -13,7 +13,7 @@ import java.util.List;
 
 @Tag(name = "Project Status History controller", description = "Project Status History management / Контроллер статуса и истории проекта")
 @RestController
-@RequestMapping("/pshc")
+@RequestMapping("/project_status_history")
 public class ProjectStatusHistoryController {
 
     ProjectStatusHistoryService projectStatusHistoryService;

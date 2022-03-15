@@ -1,6 +1,7 @@
 package com.simbirsoft.practicum.controller;
 
-import com.simbirsoft.practicum.dto.ProjectDto;
+import com.simbirsoft.practicum.dto.ProjectRequestDto;
+import com.simbirsoft.practicum.dto.ProjectResponseDto;
 import com.simbirsoft.practicum.service.ProjectService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +24,24 @@ public class ProjectController {
     }
 
     @PostMapping
-    public ResponseEntity<ProjectDto> createProject(@RequestBody ProjectDto projectDto) {
+    public ResponseEntity<ProjectResponseDto> createProject(@RequestBody ProjectRequestDto projectRequestDto) {
 
-        return ResponseEntity.ok(projectService.createProject(projectDto));
+        return ResponseEntity.ok(projectService.createProject(projectRequestDto));
     }
 
     @GetMapping
-    public ResponseEntity<List<ProjectDto>> findAll(){
+    public ResponseEntity<List<ProjectResponseDto>> findAll(){
         return ResponseEntity.ok(projectService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProjectResponseDto> findById(@PathVariable Long id){
+        return ResponseEntity.ok(projectService.findById(id));
+    }
+
+    @PatchMapping
+    public ResponseEntity<ProjectResponseDto> update(@RequestBody ProjectRequestDto projectRequestDto){
+        return ResponseEntity.ok(projectService.update(projectRequestDto));
     }
 
     @DeleteMapping("/{id}")

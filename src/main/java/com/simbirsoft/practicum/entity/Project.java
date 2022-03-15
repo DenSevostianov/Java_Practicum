@@ -1,7 +1,6 @@
 package com.simbirsoft.practicum.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -19,26 +18,25 @@ public class Project {
     @Column(name = "description")
     private String description;
 
-
+    @OneToMany(mappedBy = "project")
+    Set<ProjectStatusHistory> projectStatusHistorySet;
 
     @OneToMany(mappedBy = "project")
-    Set<ProjectStatusHistory> psh = new HashSet<>();
-
-    @OneToMany(mappedBy = "project")
-    Set<ProjectEmployeesRoles> projectEmployeesRolesSet = new HashSet<>();
-
-
-    /*@ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "project_employees_roles",
-            joinColumns = {@JoinColumn(name = "id_project", referencedColumnName = "id_project")},
-            inverseJoinColumns = {@JoinColumn(name = "id_roles", referencedColumnName = "id")}
-    )
-    Set<Roles> rolesSet = new HashSet<>();*/
-
-
+    Set<ProjectEmployeesRoles> projectEmployeesRolesSet;
 
     public Project() {
+    }
+
+    public Project(Long id,
+                   String name,
+                   String description,
+                   Set<ProjectStatusHistory> projectStatusHistorySet,
+                   Set<ProjectEmployeesRoles> projectEmployeesRolesSet) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.projectStatusHistorySet = projectStatusHistorySet;
+        this.projectEmployeesRolesSet = projectEmployeesRolesSet;
     }
 
     public Long getId() {
@@ -65,13 +63,19 @@ public class Project {
         this.description = description;
     }
 
-    /*public Set<Roles> getRolesSet() {
-        return rolesSet;
+    public Set<ProjectStatusHistory> getProjectStatusHistorySet() {
+        return projectStatusHistorySet;
     }
 
-    public void setRolesSet(Set<Roles> rolesSet) {
-        this.rolesSet = rolesSet;
-    }*/
+    public void setProjectStatusHistorySet(Set<ProjectStatusHistory> projectStatusHistorySet) {
+        this.projectStatusHistorySet = projectStatusHistorySet;
+    }
 
+    public Set<ProjectEmployeesRoles> getProjectEmployeesRolesSet() {
+        return projectEmployeesRolesSet;
+    }
 
+    public void setProjectEmployeesRolesSet(Set<ProjectEmployeesRoles> projectEmployeesRolesSet) {
+        this.projectEmployeesRolesSet = projectEmployeesRolesSet;
+    }
 }

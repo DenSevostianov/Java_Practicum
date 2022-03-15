@@ -4,19 +4,19 @@ package com.simbirsoft.practicum.dto;
 
 public class ProjectEmployeesRolesDto {
     private long id;
-    private ProjectDto projectDto;
+    private ProjectRequestDto projectRequestDto;
     private EmployeesDto employeesDto;
     private RolesDto rolesDto;
 
     public ProjectEmployeesRolesDto() {
     }
 
-    public ProjectDto getProjectDto() {
-        return projectDto;
+    public ProjectRequestDto getProjectRequestDto() {
+        return projectRequestDto;
     }
 
-    public void setProjectDto(ProjectDto projectDto) {
-        this.projectDto = projectDto;
+    public void setProjectRequestDto(ProjectRequestDto projectRequestDto) {
+        this.projectRequestDto = projectRequestDto;
     }
 
     public EmployeesDto getEmployeesDto() {
